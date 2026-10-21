@@ -2,7 +2,7 @@
 
 One-shot script to set up Termux and install termux-adb (ADB/fastboot over USB inside Termux), combining the manual steps from the setup guide into a single automated run, hosted entirely in this repo.
 
-Full step-by-step guide, including connecting to a SUNMI/DualPOS device, installing an MDM agent APK and the Device Owner step: [PANDUAN-TERMUX-ADB-SUNMI.md](PANDUAN-TERMUX-ADB-SUNMI.md).
+Full step-by-step guide: [PANDUAN-TERMUX-ADB.md](PANDUAN-TERMUX-ADB.md).
 
 ## Usage
 
@@ -24,4 +24,4 @@ Review `install-termux-adb.sh` before running it, same as you would any script f
 
 Everything the script runs is inlined in this repo — it no longer downloads a second script from a third party at run time. One thing that can't be moved: the actual `termux-adb`/`termux-fastboot` package is still published from its upstream apt repo (`nohajc.github.io`, the [nohajc/termux-adb](https://github.com/nohajc/termux-adb) project), the same way installing `curl` pulls from Termux's own package mirrors — that's where the compiled package is maintained, not something this repo re-hosts.
 
-This covers steps 2–3 of the full guide above (Termux setup + ADB installer). Steps 4 onward — enabling USB debugging on the SUNMI, verifying the ADB connection, installing the MDM agent APK, and the Device Owner step — are manual and device/organization-specific; see the guide for those.
+This covers steps 2–3 of the full guide above (Termux setup + ADB installer). Step 4 (verifying the ADB connection) is manual; see the guide for that.
