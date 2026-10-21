@@ -13,7 +13,7 @@ Menjalankan ADB dari HP Android tanpa root menggunakan USB OTG.
 | **HP host**<br>Termux + ADB | → USB OTG/data → | **SUNMI target**<br>USB debugging |
 | APK MDM Agent tersimpan di HP host | → instal via ADB → | Periksa aplikasi & provisioning |
 
-*Dokumen langkah demi langkah • diperbarui 21 Oktober 2026*
+*Dokumen langkah demi langkah • diperbarui 22 Oktober 2026*
 
 ## 1. Persiapan dan batasan
 
@@ -45,32 +45,39 @@ Menjalankan ADB dari HP Android tanpa root menggunakan USB OTG.
 
 ## 3. Instal ADB untuk Termux
 
-Repository yang digunakan dalam panduan ini: [github.com/nohajc/termux-adb](https://github.com/nohajc/termux-adb). Script internet dapat berubah. Periksa isinya sebelum menjalankan.
+> **Cara cepat (direkomendasikan):** langkah 2 dan 3 di panduan ini sudah digabung jadi satu script otomatis, dihosting penuh di repo ini (tidak lagi mengunduh script lain dari pihak ketiga saat dijalankan): [`install-termux-adb.sh`](install-termux-adb.sh).
+>
+> ```sh
+> curl -fL https://raw.githubusercontent.com/nrr24id-cmd/termux-adb-setup/main/install-termux-adb.sh -o install-termux-adb.sh
+> bash install-termux-adb.sh
+> ```
+>
+> Langkah manual A–C di bawah tetap didokumentasikan untuk yang mau paham/jalankan satu per satu.
 
-> **Cara cepat:** langkah 2 dan 3 di panduan ini sudah digabung jadi satu script otomatis di repo ini: [`install-termux-adb.sh`](install-termux-adb.sh). Lihat [README](README.md) untuk cara pakainya. Langkah manual di bawah tetap berguna untuk memahami/meninjau apa yang dijalankan script tersebut, atau kalau mau jalankan satu per satu.
-
-### A. Pasang curl
-
-```sh
-pkg install curl
-```
-
-### B. Unduh script tanpa langsung mengeksekusinya
-
-```sh
-curl -fL https://raw.githubusercontent.com/nohajc/termux-adb/master/install.sh -o install.sh
-cat install.sh
-```
-
-> Baca isi script. Jika tidak memahami perintah di dalamnya, jangan lanjutkan; minta bantuan admin IT untuk meninjau.
-
-### C. Jalankan installer setelah ditinjau
+### A. Pasang dependensi
 
 ```sh
-bash install.sh
+pkg install curl coreutils gnupg wget
 ```
 
-Jika installer selesai, uji perintah:
+### B. Tambahkan repo apt termux-adb + GPG key
+
+```sh
+mkdir -p $PREFIX/etc/apt/sources.list.d
+echo "deb https://nohajc.github.io termux extras" > $PREFIX/etc/apt/sources.list.d/termux-adb.list
+wget -qP $PREFIX/etc/apt/trusted.gpg.d https://nohajc.github.io/nohajc.gpg
+pkg update
+```
+
+> Perintah di atas adalah isi installer [nohajc/termux-adb](https://github.com/nohajc/termux-adb) yang sudah ditinjau dan dituliskan langsung di sini/di `install-termux-adb.sh`, bukan di-curl dari URL luar lagi. Catatan: paket biner `termux-adb`/`termux-fastboot` sendiri tetap dipublikasikan dari apt repo upstream-nya (`nohajc.github.io`) — itu memang sumber resmi paket tersebut, sama seperti instal `curl` yang menarik dari mirror paket Termux sendiri.
+
+### C. Instal paketnya
+
+```sh
+pkg install termux-adb
+```
+
+Uji perintah:
 
 ```sh
 termux-adb version
@@ -170,7 +177,8 @@ Jika berhasil, lanjutkan enrollment Headwind POS sesuai SOP organisasi dan verif
 
 - Termux: [F-Droid](https://f-droid.org/packages/com.termux/)
 - Termux:API: [F-Droid](https://f-droid.org/packages/com.termux.api/)
-- Installer ADB: [github.com/nohajc/termux-adb](https://github.com/nohajc/termux-adb)
+- Script setup di repo ini: [nrr24id-cmd/termux-adb-setup](https://github.com/nrr24id-cmd/termux-adb-setup)
+- Upstream apt repo paket termux-adb: [nohajc/termux-adb](https://github.com/nohajc/termux-adb)
 - Dokumentasi Android Device Policy / Device Owner: [developer.android.com/work/dpc/provisioning](https://developer.android.com/work/dpc/provisioning)
 
 ---
