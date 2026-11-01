@@ -4,7 +4,7 @@ Menyiapkan Termux dan [termux-adb](https://github.com/nohajc/termux-adb) di HP A
 
 > **Catatan:** panduan ini memakai repository [termux-adb-setup](https://github.com/nrr24id-cmd/termux-adb-setup) ini sendiri (adaptasi dari proyek pihak ketiga [nohajc/termux-adb](https://github.com/nohajc/termux-adb)). Periksa script sebelum menjalankannya dan gunakan hanya pada perangkat yang kamu miliki atau yang memang kamu berwenang kelola.
 
-*Dokumen langkah demi langkah • diperbarui 22 Oktober 2026*
+*Dokumen langkah demi langkah • diperbarui 1 November 2026*
 
 ## 1. Persiapan
 
@@ -21,8 +21,14 @@ Menyiapkan Termux dan [termux-adb](https://github.com/nohajc/termux-adb) di HP A
 
 ## 2. Instal Termux di HP host
 
-1. Pasang Termux dari sumber tepercaya. Hindari menggabungkan instalasi Termux dan plugin dari sumber tanda tangan yang berbeda.
-2. Jika diperlukan akses USB, pasang Termux:API yang kompatibel dari sumber yang sama.
+1. Download APK **Termux** dan **Termux:API** dari [F-Droid](https://f-droid.org/packages/com.termux/) ([Termux:API](https://f-droid.org/packages/com.termux.api/)) — bukan dari Play Store, karena versi Play Store sudah lama tidak diupdate. Pasang keduanya dari sumber yang sama, seperti instal APK biasa dari luar Play Store. Hindari menggabungkan instalasi Termux dan Termux:API dari sumber tanda tangan yang berbeda — keduanya harus dari rilis yang sama (F-Droid dengan F-Droid, atau GitHub release dengan GitHub release yang sama), kalau tidak Termux:API tidak akan bisa dipanggil dari Termux.
+
+   > Kalau instalasi diblokir Google Play Protect: buka Play Store → ikon akun → Play Protect → Pengaturan (ikon gear) → matikan "Scan apps with Play Protect" sementara, pasang Termux & Termux:API, lalu aktifkan lagi Play Protect setelah selesai.
+
+2. Atur izin aplikasi di Android Settings → Apps:
+   - **Termux**: izinkan permission **Files and media** (akses penyimpanan — dipakai `termux-setup-storage`) dan **Display over other apps**.
+   - **Termux:API**: buka **Permissions**, aktifkan **Modify system settings**; aktifkan **Sensors** kalau opsinya tersedia (skip kalau tidak ada). Lalu buka menu **Battery**, pilih **Unrestricted** (tak terbatas) — supaya Termux:API tetap jalan di background dan tidak di-kill sistem.
+
 3. Buka Termux dan jalankan:
 
    ```sh
@@ -30,6 +36,8 @@ Menyiapkan Termux dan [termux-adb](https://github.com/nohajc/termux-adb) di HP A
    ```
 
    Jika diminta konfirmasi, baca pertanyaannya lalu setujui bila sesuai. Koneksi internet diperlukan untuk mengunduh paket; data seluler tidak wajib jika tersedia Wi-Fi.
+
+> **Catatan:** USB debugging **tidak perlu** diaktifkan di HP host (yang menjalankan Termux) itu sendiri — USB debugging hanya perlu aktif di perangkat *target* yang mau disambungkan lewat ADB. Kalau HP host-nya punya toggle "OTG" terpisah di Settings, aktifkan juga (beberapa custom ROM mengaktifkannya otomatis begitu perangkat OTG tersambung).
 
 ## 3. Instal ADB untuk Termux
 
