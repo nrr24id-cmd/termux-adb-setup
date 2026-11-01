@@ -21,7 +21,14 @@ Menyiapkan Termux dan [termux-adb](https://github.com/nohajc/termux-adb) di HP A
 
 ## 2. Instal Termux di HP host
 
-1. Download APK **Termux** dan **Termux:API** dari [F-Droid](https://f-droid.org/packages/com.termux/) ([Termux:API](https://f-droid.org/packages/com.termux.api/)) — bukan dari Play Store, karena versi Play Store sudah lama tidak diupdate. Pasang keduanya dari sumber yang sama, seperti instal APK biasa dari luar Play Store. Hindari menggabungkan instalasi Termux dan Termux:API dari sumber tanda tangan yang berbeda — keduanya harus dari rilis yang sama (F-Droid dengan F-Droid, atau GitHub release dengan GitHub release yang sama), kalau tidak Termux:API tidak akan bisa dipanggil dari Termux.
+1. Download APK **Termux** dan **Termux:API**:
+
+   - **Direkomendasikan — versi pinned di repo ini:** sudah teruji cocok dengan `termux-adb`, dipakai supaya semua orang di tim pakai versi yang sama persis (bukan versi F-Droid terbaru yang perilakunya bisa beda sewaktu-waktu).
+     - [`com.termux_118.apk`](https://github.com/nrr24id-cmd/termux-adb-setup/releases/download/termux-v118/com.termux_118.apk)
+     - [`com.termux.api_51.apk`](https://github.com/nrr24id-cmd/termux-adb-setup/releases/download/termux-v118/com.termux.api_51.apk)
+   - **Alternatif — F-Droid:** [Termux](https://f-droid.org/packages/com.termux/) / [Termux:API](https://f-droid.org/packages/com.termux.api/) (selalu versi terbaru, belum tentu teruji dengan panduan ini).
+
+   Pasang keduanya dari sumber yang sama, seperti instal APK biasa dari luar Play Store. Hindari menggabungkan instalasi Termux dan Termux:API dari sumber tanda tangan yang berbeda — keduanya harus dari rilis yang sama (pinned dengan pinned, atau F-Droid dengan F-Droid), kalau tidak Termux:API tidak akan bisa dipanggil dari Termux.
 
    > Kalau instalasi diblokir Google Play Protect: buka Play Store → ikon akun → Play Protect → Pengaturan (ikon gear) → matikan "Scan apps with Play Protect" sementara, pasang Termux & Termux:API, lalu aktifkan lagi Play Protect setelah selesai.
 

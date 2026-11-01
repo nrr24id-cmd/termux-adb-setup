@@ -26,6 +26,15 @@ Everything the script runs is inlined in this repo — it no longer downloads a 
 
 This covers steps 2–3 of the full guide above (Termux setup + ADB installer). Step 4 (verifying the ADB connection) is manual; see the guide for that.
 
+## Pinned Termux / Termux:API APKs
+
+[Release `termux-v118`](https://github.com/nrr24id-cmd/termux-adb-setup/releases/tag/termux-v118) has the exact Termux + Termux:API versions tested to work with this setup:
+
+- [com.termux_118.apk](https://github.com/nrr24id-cmd/termux-adb-setup/releases/download/termux-v118/com.termux_118.apk)
+- [com.termux.api_51.apk](https://github.com/nrr24id-cmd/termux-adb-setup/releases/download/termux-v118/com.termux.api_51.apk)
+
+Use these instead of F-Droid when you want everyone on the same tested version. See [PANDUAN-TERMUX-ADB.md](PANDUAN-TERMUX-ADB.md) for install + permission steps.
+
 ## installer.sh — full provisioning (Termux + ADB + MDM agent + Device Owner)
 
 ```sh
